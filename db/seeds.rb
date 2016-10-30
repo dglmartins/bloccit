@@ -26,7 +26,10 @@ end
 
 Post.find_or_create_by(title: "Unique post", body: "This is a test of a unique post.")
 
-Comment.find_or_create_by(post_id: 51,body: "This is a test of a unique comment.")
+p = Post.find_by(title: "Unique post")
+id_of_post = p.id
+
+Comment.find_or_create_by(post_id: id_of_post,body: "This is a test of a unique comment.")
 
 puts "Seed finished"
 puts "#{Post.count} post created"
