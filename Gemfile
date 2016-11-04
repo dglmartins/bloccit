@@ -31,3 +31,6 @@ source 'https://rubygems.org'
  gem 'turbolinks'
 
  gem 'bootstrap-sass'
+
+#user for encrypting User passwords
+ gem 'bcrypt'
