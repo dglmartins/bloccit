@@ -1,0 +1,13 @@
+
+<div class="container" style="width:50%; margin: 0 auto;">
+  <h4>Are you sure these values are correct?</h4>
+  <p>Email: <%= @user.email %></p>
+  <p>Name: <%= @user.name %></p>
+  <div style="width: 50%; float:left;">
+    <%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success' %>
+  </div>
+  <div style="width: 50%; float: right">
+    <%= link_to "No", new_user_path, class: 'btn btn-danger' %>
+  </div>
+  </div>
+</div>
