@@ -6,6 +6,8 @@ RSpec.describe Post, type: :model do
   let(:title) { RandomData.random_sentence }
   let(:body) { RandomData.random_paragraph }
 
+  it { is_expected.to have_many(:comments) }
+
   let(:topic) { Topic.create!(name: name, description: description) }
 
   let (:user) { User.create!(name: "Bloccit user", email: "user.bloccit.io", password: "helloworld") }
