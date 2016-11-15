@@ -10,6 +10,7 @@
         </div>
       <% end %>
       <div class="media-body">
+
         <h2 class="media-heading"><%= @user.name %></h2>
         <small>
           <%= pluralize(@user.posts.count, 'post') %>
@@ -20,8 +21,33 @@
   </div>
 </div>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+<% if posts_present %>
+  <h2>Posts</h2>
+  <%= render @user.posts %>
+<% else %>
+  <h4><%= @user.name %> has not submitted any posts yet</h4>
+<% end %>
+<% if comments_present %>
+  <h2>Comments</h2>
+  <%= render @user.comments %>
+<% else %>
+  <h4><%= @user.name %> has not submitted any comments yet</h4>
+<% end %>
+<br>
+<h2>Favorite Posts</h2>
+<br>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+<% @user.favorites.each do |favorite| %>
+  <div class="media">
+    <div class="media-left">
+      <%= image_tag favorite.post.user.avatar_url(48), class: 'media-object' %>
+    </div>
+    <div class="media-body">
+      <h4><%= link_to favorite.post.title, topic_post_path(favorite.post.topic, favorite.post) %></h4>
+      <small>submitted <%= time_ago_in_words(favorite.post.created_at) %> ago by <%= favorite.post.user.name %></small> <br>
+      <h5>Points: <%= favorite.post.points %></h5>
+      <h5>Comments: <%= favorite.post.comments.count %></h5>
+      <br>
+    </div>
+  </div>
+<% end %>
