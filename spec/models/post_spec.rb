@@ -10,11 +10,11 @@ RSpec.describe Post, type: :model do
   it { is_expected.to have_many(:votes) }
   it { is_expected.to have_many(:favorites) }
 
-  let(:topic) { Topic.create!(name: name, description: description) }
+  let(:topic) { create(:topic) }
 
-  let (:user) { User.create!(name: "Bloccit user", email: "user.bloccit.io", password: "helloworld") }
+  let (:user) { create(:user) }
 
-  let(:post) { topic.posts.create!(title: title, body: body, user: user) }
+  let(:post) { create(:post) }
 
   it { is_expected.to belong_to(:topic) }
   it { is_expected.to belong_to(:user) }
@@ -32,8 +32,8 @@ RSpec.describe Post, type: :model do
 
 
   describe "attributes" do
-    it "has title, body and user attributes" do
-      expect(post).to have_attributes(title: title, body: body, user: user)
+    it "has title, body attributes" do
+      expect(post).to have_attributes(title: post.title, body: post.body)
     end
   end
 
